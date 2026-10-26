@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olulana Davies-Oluwagbile | Data Scientist</title>
+  <meta name="description" content="Portfolio of Olulana Davies-Oluwagbile. Data Scientist focused on predictive modeling, Python data engineering, and statistical optimization." />
+
+  <!-- Distinctive Typography: Bricolage Grotesque (Display), Plus Jakarta Sans (Body), IBM Plex Mono (Technical) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Bricolage Grotesque', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['IBM Plex Mono', 'monospace'],
+          },
+          colors: {
+            pitch: '#000000',
+            ink: '#0D0D0D',
+            panel: '#141414',
+            bone: '#F2F0EA',
+            pureWhite: '#FFFFFF',
+            signalOrange: '#FF3B00',
+            cobalt: '#0051FF',
+            chartreuse: '#D4FF00',
+            emeraldSolid: '#00C853',
+            borderDark: '#262626',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root {
+      --bg-primary: #000000;
+      --fg-primary: #FFFFFF;
+      --accent-orange: #FF3B00;
+      --accent-cobalt: #0051FF;
+      --accent-lime: #D4FF00;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--fg-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* High-visibility keyboard focus states */
+    *:focus-visible {
+      outline: 3px solid #D4FF00;
+      outline-offset: 3px;
+    }
+
+    /* Solid Bold Color Blocks & Hard Structural Borders (Zero Gradients) */
+    .structural-border {
+      border: 2px solid #262626;
+    }
+    .structural-card {
+      background-color: #0D0D0D;
+      border: 2px solid #262626;
+      transition: border-color 180ms ease, background-color 180ms ease;
+    }
+    .structural-card:hover {
+      border-color: #FFFFFF;
+    }
+
+    /* Custom Solid Range Slider */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: #262626;
+      height: 10px;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      background: #D4FF00;
+      border: 3px solid #000000;
+      cursor: pointer;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      background: #D4FF00;
+      border: 3px solid #000000;
+      cursor: pointer;
+    }
+
+    /* Respect reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-signalOrange selection:text-white">
+
+  <!-- ==========================================
+       SOLID ARCHITECTURAL TOP BAR
+       ========================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-pitch border-b-2 border-borderDark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <!-- EDIT NAME / LOGO HERE -->
+      <a href="#hero" class="font-display text-base sm:text-lg font-bold tracking-tight text-pureWhite flex items-center gap-3 cursor-pointer py-2">
+        <span class="bg-signalOrange text-pitch font-mono text-xs font-semibold px-2 py-1">DS</span>
+        <span>OLULANA DAVIES-OLUWAGBILE</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-8 font-mono text-xs font-medium text-zinc-300">
+        <a href="#approach" class="hover:text-chartreuse transition-colors py-2 cursor-pointer">01 / APPROACH</a>
+        <a href="#stack" class="hover:text-chartreuse transition-colors py-2 cursor-pointer">02 / STACK & SPECS</a>
+        <a href="#projects" class="hover:text-chartreuse transition-colors py-2 cursor-pointer">03 / MODELS</a>
+        <a href="#credentials" class="hover:text-chartreuse transition-colors py-2 cursor-pointer">04 / CREDENTIALS</a>
+      </nav>
+
+      <!-- Action Buttons (Min 44px height for accessibility) -->
+      <div class="hidden md:flex items-center gap-3">
+        <!-- EDIT RESUME FILE LINK HERE -->
+        <a href="./resume.pdf" download class="min-h-[44px] px-4 bg-panel hover:bg-pureWhite hover:text-pitch border-2 border-borderDark font-mono text-xs font-semibold text-pureWhite transition-colors flex items-center gap-2 cursor-pointer">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>CV / RESUME</span>
+        </a>
+        <a href="#contact" class="min-h-[44px] px-5 bg-signalOrange hover:bg-pureWhite hover:text-pitch font-mono text-xs font-semibold text-pureWhite transition-colors flex items-center cursor-pointer">
+          <span>CONTACT</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" aria-label="Toggle Menu" class="md:hidden min-h-[44px] min-w-[44px] flex items-center justify-center border-2 border-borderDark text-pureWhite hover:border-pureWhite cursor-pointer">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden bg-ink border-b-2 border-borderDark px-6 py-6 space-y-4">
+      <div class="flex flex-col space-y-3 font-mono text-sm font-medium text-pureWhite">
+        <a href="#approach" class="mobile-link py-2 hover:text-chartreuse">01 / APPROACH</a>
+        <a href="#stack" class="mobile-link py-2 hover:text-chartreuse">02 / STACK & SPECS</a>
+        <a href="#projects" class="mobile-link py-2 hover:text-chartreuse">03 / MODELS</a>
+        <a href="#credentials" class="mobile-link py-2 hover:text-chartreuse">04 / CREDENTIALS</a>
+        <a href="#contact" class="mobile-link py-2 hover:text-chartreuse">05 / CONTACT</a>
+      </div>
+      <div class="pt-4 border-t-2 border-borderDark grid grid-cols-2 gap-3">
+        <a href="./resume.pdf" download class="min-h-[44px] flex items-center justify-center bg-panel border-2 border-borderDark font-mono text-xs font-semibold text-pureWhite">
+          DOWNLOAD CV
+        </a>
+        <a href="#contact" class="mobile-link min-h-[44px] flex items-center justify-center bg-signalOrange font-mono text-xs font-semibold text-pureWhite">
+          CONTACT ME
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       1. HERO SECTION (BOLD KEYNOTE TYPOGRAPHY, ZERO GRADIENTS)
+       ========================================== -->
+  <section id="hero" class="pt-28 sm:pt-36 pb-20 px-4 sm:px-6 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <!-- Left 8 Columns: Stark Bold Headline & Bio -->
+      <div class="lg:col-span-8 space-y-8">
+        <div class="gsap-hero inline-block bg-cobalt text-pureWhite font-mono text-xs font-semibold px-3 py-1.5 uppercase tracking-wider">
+          DATA SCIENTIST / OSOGBO & LAGOS, NIGERIA
+        </div>
+
+        <!-- EDIT HERO HEADLINE HERE -->
+        <h1 class="gsap-hero font-display text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.98] text-pureWhite">
+          RAW DATA.<br />
+          <span class="bg-chartreuse text-pitch px-2 inline-block mt-2">ENGINEERED</span><br />
+          INTO INSIGHT.
+        </h1>
+
+        <!-- EDIT BIO HERE (Zero em-dashes, direct human copy) -->
+        <p class="gsap-hero text-lg sm:text-xl text-zinc-200 max-w-2xl font-normal leading-relaxed">
+          I extract actionable intelligence from complex company datasets and optimize predictive machine learning models. Every pipeline I build is driven by a first-principles love for computing.
+        </p>
+
+        <!-- Primary Actions -->
+        <div class="gsap-hero flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+          <a href="#projects" class="min-h-[52px] px-8 bg-signalOrange hover:bg-pureWhite text-pureWhite hover:text-pitch font-mono text-sm font-semibold transition-colors flex items-center justify-center gap-3 cursor-pointer">
+            <span>INSPECT PREDICTIVE MODELS</span>
+            <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
+          </a>
+          <a href="./resume.pdf" download class="min-h-[52px] px-8 bg-pitch hover:bg-pureWhite text-pureWhite hover:text-pitch border-2 border-pureWhite font-mono text-sm font-semibold transition-colors flex items-center justify-center gap-3 cursor-pointer">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            <span>DOWNLOAD RESUME (PDF)</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right 4 Columns: Authentic Jupyter Notebook Execution Block (No Fake Mac Dots) -->
+      <div class="gsap-hero lg:col-span-4 w-full structural-border bg-ink">
+        <div class="bg-pureWhite text-pitch px-4 py-3 font-mono text-xs font-bold flex items-center justify-between">
+          <span>JUPYTER KERNEL : PYTHON 3</span>
+          <span class="bg-pitch text-chartreuse px-2 py-0.5">ACTIVE</span>
+        </div>
+        <div class="p-5 space-y-4 font-mono text-xs">
+          <div class="border-l-4 border-cobalt pl-3 py-1">
+            <div class="text-zinc-400">In [1]:</div>
+            <div class="text-pureWhite mt-1">import pandas as pd</div>
+            <div class="text-pureWhite">from sklearn.ensemble import RandomForestRegressor</div>
+          </div>
+          <div class="border-l-4 border-signalOrange pl-3 py-1">
+            <div class="text-zinc-400">In [2]:</div>
+            <div class="text-pureWhite mt-1">df = pd.read_csv('uniosun_housing.csv')</div>
+            <div class="text-pureWhite">X, y = engineer_features(df)</div>
+            <div class="text-pureWhite">model.fit(X_train, y_train)</div>
+          </div>
+          <div class="bg-pitch border-2 border-borderDark p-3">
+            <div class="text-chartreuse font-semibold">Out [2]: Pipeline Summary</div>
+            <div class="grid grid-cols-2 gap-2 mt-2 text-zinc-200">
+              <div>Cross-Val R2: <span class="text-pureWhite font-bold">0.924</span></div>
+              <div>Vector Speedup: <span class="text-pureWhite font-bold">3.5x</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       2. APPROACH SECTION (HIGH-CONTRAST BONE WHITE BLOCK)
+       ========================================== -->
+  <section id="approach" class="bg-bone text-pitch border-y-2 border-pitch py-20 sm:py-28 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-center justify-between pb-8 mb-12 border-b-2 border-pitch gap-4">
+        <span class="font-mono text-xs font-bold uppercase tracking-wider bg-pitch text-pureWhite px-3 py-1.5 self-start">
+          01 / ENGINEERING APPROACH
+        </span>
+        <span class="font-mono text-xs font-semibold text-pitch">
+          MATHEMATICAL RIGOR + PRODUCTION PYTHON
+        </span>
+      </div>
+
+      <!-- Asymmetric 2-Column Editorial Layout (Avoids AI 3-equal-card cliché) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-7">
+          <h2 class="reveal-up font-display text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.08] text-pitch">
+            Most data projects fail before modeling begins because the underlying distributions are misunderstood.
+          </h2>
+          <p class="reveal-up mt-6 text-base sm:text-lg text-zinc-800 leading-relaxed max-w-2xl">
+            My workflow pairs mathematical foundations in linear algebra, sampling theory, and numerical analysis with disciplined data hygiene in Pandas and NumPy. Instead of treating algorithms as black boxes, I diagnose bias, variance, and feature collinearity to make existing models faster and more accurate.
+          </p>
+        </div>
+
+        <div class="lg:col-span-5 space-y-4">
+          <div class="reveal-up bg-pureWhite border-2 border-pitch p-6">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold bg-signalOrange text-pureWhite px-2 py-0.5">STAGE 01</span>
+              <span class="font-mono text-xs font-semibold">DATA WRANGLING</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-pitch">Structured Hygiene & Vectorization</h3>
+            <p class="text-sm text-zinc-700 mt-2">
+              Auditing missingness, encoding spatial and categorical variables, and replacing slow Python loops with vectorized NumPy array operations.
+            </p>
+          </div>
+
+          <div class="reveal-up bg-pureWhite border-2 border-pitch p-6">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold bg-cobalt text-pureWhite px-2 py-0.5">STAGE 02</span>
+              <span class="font-mono text-xs font-semibold">MODEL TUNING</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-pitch">Scikit-Learn Validation & Optimization</h3>
+            <p class="text-sm text-zinc-700 mt-2">
+              Building leak-free cross-validation pipelines, tuning hyperparameters, and pruning noisy features to maximize out-of-sample generalization.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       3. SYSTEM SPECS & BENTO MATRIX (SOLID BOLD BLOCKS)
+       (EDIT FABRICATED METRICS & SKILLS HERE)
+       ========================================== -->
+  <section id="stack" class="py-24 sm:py-32 px-4 sm:px-6 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-12 border-b-2 border-borderDark gap-4">
+      <div>
+        <span class="font-mono text-xs font-bold bg-chartreuse text-pitch px-3 py-1.5 inline-block mb-4">
+          02 / ARCHITECTURE & BENCHMARKS
+        </span>
+        <h2 class="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-pureWhite">
+          THE PYTHON DATA SUITE.
+        </h2>
+      </div>
+      <p class="font-mono text-xs text-zinc-300 max-w-sm">
+        Built around Jupyter Notebook, Pandas, NumPy, Scikit-Learn, Matplotlib, and Seaborn.
+      </p>
+    </div>
+
+    <!-- Solid Bold Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+      <!-- Core Stack Table (Span 7) -->
+      <div class="reveal-up structural-card p-6 sm:p-8 md:col-span-7 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-4 mb-6 border-b-2 border-borderDark">
+            <span class="font-mono text-xs font-semibold text-chartreuse">PRIMARY WORKBENCH</span>
+            <span class="font-mono text-xs text-zinc-400">JUPYTER + PYTHON 3</span>
+          </div>
+          <h3 class="font-display text-2xl sm:text-3xl font-bold text-pureWhite mb-3">
+            End-to-End Scientific Computing Stack
+          </h3>
+          <p class="text-sm sm:text-base text-zinc-300 leading-relaxed mb-8">
+            Every analytical project is structured inside reproducible Jupyter Notebooks using the core Python data science ecosystem for ingestion, statistical testing, and visual reporting.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 font-mono">
+          <div class="p-4 bg-pitch border-2 border-borderDark">
+            <div class="text-xs text-signalOrange font-bold mb-1">01 / CORE</div>
+            <div class="text-sm font-bold text-pureWhite">Python 3</div>
+            <div class="text-xs text-zinc-400 mt-1">Data & Scripting</div>
+          </div>
+          <div class="p-4 bg-pitch border-2 border-borderDark">
+            <div class="text-xs text-chartreuse font-bold mb-1">02 / TABLES</div>
+            <div class="text-sm font-bold text-pureWhite">Pandas</div>
+            <div class="text-xs text-zinc-400 mt-1">Wrangling & ETL</div>
+          </div>
+          <div class="p-4 bg-pitch border-2 border-borderDark">
+            <div class="text-xs text-cobalt font-bold mb-1">03 / ARRAYS</div>
+            <div class="text-sm font-bold text-pureWhite">NumPy</div>
+            <div class="text-xs text-zinc-400 mt-1">Linear Algebra</div>
+          </div>
+          <div class="p-4 bg-pitch border-2 border-borderDark">
+            <div class="text-xs text-signalOrange font-bold mb-1">04 / ML</div>
+            <div class="text-sm font-bold text-pureWhite">Scikit-Learn</div>
+            <div class="text-xs text-zinc-400 mt-1">Predictive Models</div>
+          </div>
+          <div class="p-4 bg-pitch border-2 border-borderDark">
+            <div class="text-xs text-chartreuse font-bold mb-1">05 / STATS VIZ</div>
+            <div class="text-sm font-bold text-pureWhite">Seaborn</div>
+            <div class="text-xs text-zinc-400 mt-1">Distributions</div>
+          </div>
+          <div class="p-4 bg-pitch border-2 border-borderDark">
+            <div class="text-xs text-cobalt font-bold mb-1">06 / PLOTTING</div>
+            <div class="text-sm font-bold text-pureWhite">Matplotlib</div>
+            <div class="text-xs text-zinc-400 mt-1">Custom Figures</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bold Solid Cobalt Card: Metric 1 (EDIT FABRICATED METRIC #1 HERE) -->
+      <div class="reveal-up bg-cobalt text-pureWhite border-2 border-pureWhite p-6 sm:p-8 md:col-span-5 flex flex-col justify-between">
+        <div class="flex items-center justify-between border-b-2 border-pureWhite/30 pb-3">
+          <span class="font-mono text-xs font-bold uppercase">BENCHMARK 01 / MODEL FIDELITY</span>
+          <i data-lucide="Crosshair" class="w-5 h-5"></i>
+        </div>
+        <div class="my-8">
+          <!-- EDIT STAT NUMBER BELOW -->
+          <div class="font-display text-6xl sm:text-7xl font-extrabold tracking-tight">92.4%</div>
+          <div class="font-display text-xl font-bold mt-2">Peak Cross-Validation Score</div>
+          <p class="text-sm text-pureWhite/90 mt-3 leading-relaxed">
+            Reached through systematic outlier handling, domain feature engineering, and k-fold grid search across regression and classification tasks.
+          </p>
+        </div>
+        <div class="font-mono text-xs font-semibold bg-pitch text-pureWhite px-3 py-2 inline-block self-start">
+          SCIKIT-LEARN VALIDATION PIPELINE
+        </div>
+      </div>
+
+      <!-- Bold Solid Signal Orange Card: Metric 2 (EDIT FABRICATED METRIC #2 HERE) -->
+      <div class="reveal-up bg-signalOrange text-pitch border-2 border-pureWhite p-6 sm:p-8 md:col-span-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between border-b-2 border-pitch/30 pb-3">
+          <span class="font-mono text-xs font-bold uppercase">BENCHMARK 02 / SPEED</span>
+          <i data-lucide="zap" class="w-5 h-5"></i>
+        </div>
+        <div class="my-6">
+          <!-- EDIT STAT NUMBER BELOW -->
+          <div class="font-display text-5xl sm:text-6xl font-extrabold tracking-tight">3.5X</div>
+          <div class="font-display text-lg font-bold mt-2">Faster Preprocessing Execution</div>
+          <p class="text-sm text-pitch/90 mt-2 leading-relaxed font-medium">
+            Achieved by refactoring row-by-row iteration into vectorized NumPy arrays and Pandas group transformations.
+          </p>
+        </div>
+        <div class="font-mono text-xs font-bold uppercase border-t-2 border-pitch pt-3">
+          VECTORIZED NUMPY + PANDAS
+        </div>
+      </div>
+
+      <!-- Bold Solid Chartreuse Card: Metric 3 (EDIT FABRICATED METRIC #3 HERE) -->
+      <div class="reveal-up bg-chartreuse text-pitch border-2 border-pureWhite p-6 sm:p-8 md:col-span-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between border-b-2 border-pitch/30 pb-3">
+          <span class="font-mono text-xs font-bold uppercase">BENCHMARK 03 / VOLUME</span>
+          <i data-lucide="database" class="w-5 h-5"></i>
+        </div>
+        <div class="my-6">
+          <!-- EDIT STAT NUMBER BELOW -->
+          <div class="font-display text-5xl sm:text-6xl font-extrabold tracking-tight">50K+</div>
+          <div class="font-display text-lg font-bold mt-2">Data Rows Cleaned & Modeled</div>
+          <p class="text-sm text-pitch/90 mt-2 leading-relaxed font-medium">
+            Synthesizing raw organizational logs, missing records, and multi-variable correlations into structured training tables.
+          </p>
+        </div>
+        <div class="font-mono text-xs font-bold uppercase border-t-2 border-pitch pt-3">
+          EXPLORATORY DATA ANALYSIS
+        </div>
+      </div>
+
+      <!-- Next Horizon Card: TensorFlow & Deep Learning (Span 4) -->
+      <div class="reveal-up structural-card p-6 sm:p-8 md:col-span-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between border-b-2 border-borderDark pb-3">
+          <span class="font-mono text-xs font-bold text-chartreuse uppercase">R&D ROADMAP</span>
+          <span class="font-mono text-xs bg-pureWhite text-pitch font-bold px-2 py-0.5">NEXT</span>
+        </div>
+        <div class="my-6">
+          <h3 class="font-display text-2xl font-bold text-pureWhite mb-3">
+            TensorFlow & Deep Neural Architectures
+          </h3>
+          <p class="text-sm text-zinc-300 leading-relaxed">
+            Expanding beyond classical tabular estimators into tensor computation, multi-layer perceptrons, and deep representation learning.
+          </p>
+        </div>
+        <div class="font-mono text-xs text-signalOrange font-semibold border-t-2 border-borderDark pt-3">
+          DEEP LEARNING EXPANSION
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       4. FEATURED PROJECTS & LIVE SIMULATOR
+       (EDIT OR ADD PROJECTS HERE)
+       ========================================== -->
+  <section id="projects" class="py-24 sm:py-32 px-4 sm:px-6 border-t-2 border-borderDark bg-ink">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-14 border-b-2 border-borderDark gap-6">
+        <div>
+          <span class="font-mono text-xs font-bold bg-signalOrange text-pureWhite px-3 py-1.5 inline-block mb-4">
+            03 / APPLIED MACHINE LEARNING
+          </span>
+          <h2 class="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-pureWhite">
+            PRODUCTION CASE STUDIES.
+          </h2>
+        </div>
+        <p class="text-zinc-300 text-sm sm:text-base max-w-md">
+          Predictive models engineered to solve real pricing and decision problems.
+        </p>
+      </div>
+
+      <!-- ==========================================
+           PROJECT 1: OSUN STATE UNIVERSITY HOSTEL PREDICTOR
+           ========================================== -->
+      <div class="reveal-up bg-pitch border-2 border-pureWhite p-6 sm:p-10 mb-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+          <!-- Left 6 Columns: Case Study Breakdown -->
+          <div class="lg:col-span-6 space-y-6">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="bg-chartreuse text-pitch font-mono text-xs font-bold px-3 py-1">
+                CASE STUDY 01
+              </span>
+              <span class="font-mono text-xs text-zinc-300">
+                OSUN STATE UNIVERSITY (UNIOSUN)
+              </span>
+            </div>
+
+            <h3 class="font-display text-3xl sm:text-4xl font-extrabold text-pureWhite leading-tight">
+              Osun State University External Hostel Price Predictor
+            </h3>
+
+            <p class="text-zinc-200 text-base leading-relaxed">
+              Incoming freshmen frequently face inflated rent quotes and information asymmetry when searching for off-campus housing. This supervised regression model evaluates hostel attributes across neighborhoods around UNIOSUN to give new students accurate rent benchmarks before they negotiate with agents.
+            </p>
+
+            <div class="space-y-3 pt-2 border-t-2 border-borderDark">
+              <div class="flex items-start gap-3 text-sm text-zinc-200">
+                <span class="font-mono text-xs font-bold bg-signalOrange text-pureWhite px-2 py-0.5 mt-0.5">01</span>
+                <span>Engineered proximity-to-campus, power/water availability, and room-type features in <strong class="text-pureWhite">Pandas</strong>.</span>
+              </div>
+              <div class="flex items-start gap-3 text-sm text-zinc-200">
+                <span class="font-mono text-xs font-bold bg-cobalt text-pureWhite px-2 py-0.5 mt-0.5">02</span>
+                <span>Trained and cross-validated regression models with <strong class="text-pureWhite">Scikit-Learn</strong> inside <strong class="text-pureWhite">Jupyter Notebook</strong>.</span>
+              </div>
+              <div class="flex items-start gap-3 text-sm text-zinc-200">
+                <span class="font-mono text-xs font-bold bg-chartreuse text-pitch px-2 py-0.5 mt-0.5">03</span>
+                <span>Mapped fair-price bands across student corridors to prevent freshmen from overpaying.</span>
+              </div>
+            </div>
+
+            <!-- Tech Stack -->
+            <div class="flex flex-wrap gap-2 pt-2 font-mono text-xs">
+              <span class="px-3 py-1.5 bg-panel border-2 border-borderDark text-pureWhite">Python</span>
+              <span class="px-3 py-1.5 bg-panel border-2 border-borderDark text-pureWhite">Jupyter Notebook</span>
+              <span class="px-3 py-1.5 bg-panel border-2 border-borderDark text-pureWhite">Pandas</span>
+              <span class="px-3 py-1.5 bg-panel border-2 border-borderDark text-pureWhite">Scikit-Learn</span>
+            </div>
+
+            <!-- EDIT PROJECT 1 LINKS HERE -->
+            <div class="pt-4">
+              <a href="https://github.com/sticker-xl" target="_blank" rel="noopener noreferrer" class="min-h-[48px] px-6 bg-pureWhite hover:bg-chartreuse text-pitch font-mono text-xs font-bold transition-colors inline-flex items-center gap-3 cursor-pointer">
+                <i data-lucide="github" class="w-4 h-4"></i>
+                <span>VIEW SOURCE REPOSITORY</span>
+                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right 6 Columns: Interactive Hardware-Style Simulator -->
+          <div class="lg:col-span-6 bg-panel border-2 border-borderDark p-6 sm:p-8">
+            <div class="flex items-center justify-between pb-4 mb-6 border-b-2 border-borderDark">
+              <div>
+                <div class="font-mono text-xs font-bold text-chartreuse">INTERACTIVE MODEL SIMULATOR</div>
+                <h4 class="font-display text-lg font-bold text-pureWhite mt-0.5">UNIOSUN Annual Rent Estimator</h4>
+              </div>
+              <span class="font-mono text-xs bg-pitch border border-borderDark px-2.5 py-1 text-zinc-300">
+                SKLEARN.ENSEMBLE
+              </span>
+            </div>
+
+            <div class="space-y-6">
+              <!-- Feature 01 -->
+              <div>
+                <label for="zone-select" class="block font-mono text-xs font-bold text-pureWhite uppercase mb-2">
+                  01 / CAMPUS PROXIMITY CORRIDOR
+                </label>
+                <select id="zone-select" class="w-full min-h-[48px] bg-pitch border-2 border-pureWhite px-4 py-2.5 text-sm text-pureWhite font-sans cursor-pointer">
+                  <option value="1.25">Oke-Baale / Main Gate Axis (Closest to Campus)</option>
+                  <option value="1.0" selected>Ibokun Road / Standard Student Corridor</option>
+                  <option value="0.82">Testing Ground / Extended Commute Zone</option>
+                </select>
+              </div>
+
+              <!-- Feature 02 -->
+              <div>
+                <label for="room-select" class="block font-mono text-xs font-bold text-pureWhite uppercase mb-2">
+                  02 / HOSTEL ROOM CONFIGURATION
+                </label>
+                <select id="room-select" class="w-full min-h-[48px] bg-pitch border-2 border-pureWhite px-4 py-2.5 text-sm text-pureWhite font-sans cursor-pointer">
+                  <option value="95000">Single Room (Shared Facilities)</option>
+                  <option value="185000" selected>Self-Contained (Private Bath & Kitchen)</option>
+                  <option value="310000">Modern Studio / Mini-Flat (Tiled + Wardrobe)</option>
+                </select>
+              </div>
+
+              <!-- Feature 03 -->
+              <div>
+                <div class="flex justify-between font-mono text-xs font-bold mb-2">
+                  <label for="amenity-range" class="text-pureWhite uppercase">03 / WATER, SOLAR & SECURITY INDEX</label>
+                  <span id="amenity-val" class="bg-chartreuse text-pitch px-2 py-0.5">8 / 10</span>
+                </div>
+                <input id="amenity-range" type="range" min="1" max="10" value="8" class="w-full" />
+              </div>
+
+              <!-- Solid Bold Output Display -->
+              <div class="bg-chartreuse text-pitch p-5 border-2 border-pitch flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <div class="font-mono text-xs font-bold uppercase">PREDICTED FAIR ANNUAL RENT</div>
+                  <div id="predicted-price" class="font-display text-3xl sm:text-4xl font-extrabold mt-1">
+                    ₦207,200 / YR
+                  </div>
+                </div>
+                <div class="sm:text-right font-mono text-xs font-bold bg-pitch text-pureWhite px-3 py-2 self-start sm:self-center">
+                  +/- 8% ERROR BAND
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ==========================================
+           ADDITIONAL PROJECT SLOTS (READY TO EDIT)
+           ========================================== -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- PROJECT 2 PLACEHOLDER (EDIT LATER IN HTML) -->
+        <div class="reveal-up structural-card p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-4 mb-5 border-b-2 border-borderDark font-mono text-xs">
+              <span class="bg-cobalt text-pureWhite font-bold px-2.5 py-1">CASE STUDY 02</span>
+              <span class="text-zinc-400">TEMPLATE SLOT</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-pureWhite mb-3">
+              Customer Retention & Churn Prediction Pipeline
+            </h3>
+            <p class="text-sm text-zinc-300 leading-relaxed mb-6">
+              Supervised classification workflow identifying high-risk accounts from usage logs, improving baseline recall through class-weight balancing and ensemble tuning.
+            </p>
+          </div>
+          <div>
+            <div class="flex flex-wrap gap-2 mb-6 font-mono text-xs">
+              <span class="px-2.5 py-1 bg-pitch border border-borderDark text-zinc-200">Python</span>
+              <span class="px-2.5 py-1 bg-pitch border border-borderDark text-zinc-200">Scikit-Learn</span>
+              <span class="px-2.5 py-1 bg-pitch border border-borderDark text-zinc-200">Pandas</span>
+              <span class="px-2.5 py-1 bg-pitch border border-borderDark text-zinc-200">Seaborn</span>
+            </div>
+            <!-- EDIT PROJECT 2 LINK HERE -->
+            <a href="https://github.com/sticker-xl" target="_blank" rel="noopener noreferrer" class="min-h-[44px] inline-flex items-center gap-2 font-mono text-xs font-bold text-chartreuse hover:text-pureWhite cursor-pointer">
+              <span>INSPECT REPOSITORY</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- PROJECT 3 PLACEHOLDER (EDIT LATER IN HTML) -->
+        <div class="reveal-up structural-card p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-4 mb-5 border-b-2 border-borderDark font-mono text-xs">
+              <span class="bg-signalOrange text-pureWhite font-bold px-2.5 py-1">CASE STUDY 03</span>
+              <span class="text-zinc-400">TEMPLATE SLOT</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-pureWhite mb-3">
+              Automated Data Hygiene & Anomaly Diagnostic Suite
+            </h3>
+            <p class="text-sm text-zinc-300 leading-relaxed mb-6">
+              Statistical diagnostic toolkit built with NumPy and Matplotlib to surface multi-dimensional outliers, distribution drift, and schema errors in organizational tables.
+            </p>
+          </div>
+          <div>
+            <div class="flex flex-wrap gap-2 mb-6 font-mono text-xs">
+              <span class="px-2.5 py-1 bg-pitch border border-borderDark text-zinc-200">NumPy</span>
+              <span class="px-2.5 py-1 bg-pitch border border-borderDark text-zinc-200">Matplotlib</span>
+              <span class="px-2.5 py-1 bg-pitch border border-borderDark text-zinc-200">Pandas</span>
+              <span class="px-2.5 py-1 bg-pitch border border-borderDark text-zinc-200">Jupyter</span>
+            </div>
+            <!-- EDIT PROJECT 3 LINK HERE -->
+            <a href="https://github.com/sticker-xl" target="_blank" rel="noopener noreferrer" class="min-h-[44px] inline-flex items-center gap-2 font-mono text-xs font-bold text-chartreuse hover:text-pureWhite cursor-pointer">
+              <span>INSPECT REPOSITORY</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       5. EXPERIENCE, EDUCATION & CERTIFICATIONS
+       ========================================== -->
+  <section id="credentials" class="py-24 sm:py-32 px-4 sm:px-6 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-14 border-b-2 border-borderDark gap-4">
+      <div>
+        <span class="font-mono text-xs font-bold bg-cobalt text-pureWhite px-3 py-1.5 inline-block mb-4">
+          04 / EXPERIENCE & ACADEMIC CREDENTIALS
+        </span>
+        <h2 class="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-pureWhite">
+          VERIFIED TRACK RECORD.
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Experience Card -->
+      <div class="reveal-up structural-card p-6 sm:p-8 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-4 mb-6 border-b-2 border-borderDark font-mono text-xs">
+            <span class="bg-signalOrange text-pureWhite font-bold px-2.5 py-1">INTERNSHIP</span>
+            <span class="text-zinc-300">LAGOS, NG</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-pureWhite mb-2">
+            ICT & Data Management Intern
+          </h3>
+          <p class="font-mono text-xs text-chartreuse mb-4">
+            Ayobo-Ipaja LCDA Secretariat (ICT Department)
+          </p>
+          <p class="text-sm text-zinc-300 leading-relaxed">
+            Supported departmental data management workflows, organized digital municipal records, and assisted with hardware and system maintenance across the secretariat.
+          </p>
+        </div>
+        <div class="mt-8 pt-4 border-t-2 border-borderDark font-mono text-xs text-zinc-400">
+          INDUSTRIAL TRAINING (SIWES)
+        </div>
+      </div>
+
+      <!-- HarvardX Certification Card -->
+      <div class="reveal-up structural-card p-6 sm:p-8 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-4 mb-6 border-b-2 border-borderDark font-mono text-xs">
+            <span class="bg-chartreuse text-pitch font-bold px-2.5 py-1">CERTIFICATION</span>
+            <span class="text-pureWhite font-bold">2026</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-pureWhite mb-2">
+            Data Science with Python
+          </h3>
+          <p class="font-mono text-xs text-chartreuse mb-4">
+            HarvardX (Harvard University via edX)
+          </p>
+          <p class="text-sm text-zinc-300 leading-relaxed">
+            Rigorous coursework in regression modeling, statistical inference, model validation, and scientific computing using Pandas, NumPy, Scikit-Learn, and Matplotlib.
+          </p>
+        </div>
+        <div class="mt-8 pt-4 border-t-2 border-borderDark font-mono text-xs text-zinc-400">
+          VERIFIED CREDENTIAL / 2026
+        </div>
+      </div>
+
+      <!-- University Degree Card -->
+      <div class="reveal-up structural-card p-6 sm:p-8 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-4 mb-6 border-b-2 border-borderDark font-mono text-xs">
+            <span class="bg-cobalt text-pureWhite font-bold px-2.5 py-1">DEGREE</span>
+            <span class="text-pureWhite font-bold">2024 TO 2028</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-pureWhite mb-2">
+            B.Sc. Data Science
+          </h3>
+          <p class="font-mono text-xs text-chartreuse mb-4">
+            Osun State University (UNIOSUN)
+          </p>
+          <p class="text-sm text-zinc-300 leading-relaxed">
+            Pioneer Data Science cohort. Coursework covers Linear Algebra, Numerical Analysis, Sampling Theory, Mathematical Methods, Discrete Structures, and Software Engineering.
+          </p>
+        </div>
+        <div class="mt-8 pt-4 border-t-2 border-borderDark font-mono text-xs text-zinc-400">
+          UNDERGRADUATE HONORS TRACK
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       6. CONTACT FOOTER (SOLID SIGNAL ORANGE BLOCK)
+       ========================================== -->
+  <footer id="contact" class="bg-signalOrange text-pitch border-t-4 border-pureWhite py-20 sm:py-28 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end pb-16 border-b-2 border-pitch">
+        <div class="lg:col-span-8">
+          <span class="font-mono text-xs font-bold bg-pitch text-pureWhite px-3 py-1.5 inline-block mb-6">
+            05 / DIRECT DISPATCH
+          </span>
+          <h2 class="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[0.98] text-pitch">
+            READY TO OPTIMIZE YOUR DATA PIPELINE.
+          </h2>
+        </div>
+        <div class="lg:col-span-4 lg:text-right">
+          <p class="font-sans text-base font-semibold text-pitch mb-4">
+            Open for Data Science internships, research collaborations, and predictive analytics roles.
+          </p>
+          <a href="./resume.pdf" download class="min-h-[48px] px-6 bg-pitch text-pureWhite hover:bg-pureWhite hover:text-pitch font-mono text-xs font-bold inline-flex items-center gap-2 transition-colors cursor-pointer">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>DOWNLOAD FULL CV (PDF)</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Direct Contact Grid (EDIT LINKS HERE) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-10 font-mono text-xs">
+        <a href="mailto:oluwagbiledivine@gmail.com" class="min-h-[56px] p-4 bg-pitch text-pureWhite hover:bg-pureWhite hover:text-pitch transition-colors flex items-center justify-between cursor-pointer">
+          <span>EMAIL / oluwagbiledivine@gmail.com</span>
+          <i data-lucide="mail" class="w-4 h-4 shrink-0"></i>
+        </a>
+        <a href="https://github.com/sticker-xl" target="_blank" rel="noopener noreferrer" class="min-h-[56px] p-4 bg-pitch text-pureWhite hover:bg-pureWhite hover:text-pitch transition-colors flex items-center justify-between cursor-pointer">
+          <span>GITHUB / sticker-xl</span>
+          <i data-lucide="github" class="w-4 h-4 shrink-0"></i>
+        </a>
+        <a href="https://www.linkedin.com/search/results/all/?keywords=Olulana%20Divine%20Davies-Oluwagbile" target="_blank" rel="noopener noreferrer" class="min-h-[56px] p-4 bg-pitch text-pureWhite hover:bg-pureWhite hover:text-pitch transition-colors flex items-center justify-between cursor-pointer">
+          <span>LINKEDIN / Olulana Divine Davies-Oluwagbile</span>
+          <i data-lucide="linkedin" class="w-4 h-4 shrink-0"></i>
+        </a>
+      </div>
+
+      <div class="pt-10 flex flex-col sm:flex-row items-center justify-between font-mono text-xs font-bold text-pitch gap-4">
+        <p>© 2026 OLULANA DAVIES-OLUWAGBILE. ALL RIGHTS RESERVED.</p>
+        <p>ZERO-GRADIENT INDUSTRIAL EDITION</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       SCRIPTS
+       ========================================== -->
+  <script>
+    lucide.createIcons();
+
+    // Mobile Menu
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // UNIOSUN Hostel Rent Estimator Logic
+    const zoneSelect = document.getElementById('zone-select');
+    const roomSelect = document.getElementById('room-select');
+    const amenityRange = document.getElementById('amenity-range');
+    const amenityVal = document.getElementById('amenity-val');
+    const predictedPrice = document.getElementById('predicted-price');
+
+    function updatePrediction() {
+      const zoneMultiplier = parseFloat(zoneSelect.value);
+      const baseRoomPrice = parseFloat(roomSelect.value);
+      const amenityScore = parseInt(amenityRange.value, 10);
+
+      amenityVal.textContent = amenityScore + ' / 10';
+      const amenityFactor = 1 + ((amenityScore - 5) * 0.045);
+      const estimated = Math.round((baseRoomPrice * zoneMultiplier * amenityFactor) / 500) * 500;
+      predictedPrice.textContent = '₦' + estimated.toLocaleString() + ' / YR';
+    }
+
+    zoneSelect.addEventListener('change', updatePrediction);
+    roomSelect.addEventListener('change', updatePrediction);
+    amenityRange.addEventListener('input', updatePrediction);
+    updatePrediction();
+
+    // Respect prefers-reduced-motion before running GSAP
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.from('.gsap-hero', {
+        y: 24,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: 'power3.out'
+      });
+
+      gsap.utils.toArray('.reveal-up').forEach((elem) => {
+        gsap.from(elem, {
+          scrollTrigger: {
+            trigger: elem,
+            start: 'top 90%',
+            toggleActions: 'play none none none'
+          },
+          y: 24,
+          opacity: 0,
+          duration: 0.6,
+          ease: 'power3.out'
+        });
+      });
+    }
+  </script>
+</body>
+</html>
